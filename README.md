@@ -66,3 +66,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+[![DeepScan grade](https://deepscan.io/api/teams/2060/projects/5580/branches/42994/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2060&pid=5580&bid=42994)
