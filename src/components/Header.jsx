@@ -1,7 +1,8 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from './Home'
-import Donaciones from './Donacioens'
+import Donaciones from './Donaciones'
+import NotFound from './NotFound'
 
 const Header = () => {
   return (
@@ -9,7 +10,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 
         <Link className="navbar-brand" to="/">Donar Ya!</Link>
-        
+
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -35,8 +36,11 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      <Route path="/" exact component={Home} />
-      <Route path="/donaciones/" component={Donaciones} />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/donaciones/" component={Donaciones} />
+        <Route component={NotFound} />
+      </Switch>
     </Router>
   )
 }
