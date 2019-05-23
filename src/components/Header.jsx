@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from './Home'
 import Donaciones from './Donaciones'
 import NotFound from './NotFound'
+import Login from './Login'
+import Registro from './Registro'
 
 const Header = () => {
   return (
@@ -39,6 +41,8 @@ const Header = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/donaciones/" component={Donaciones} />
+        <Route path="/login/" component={Login} />
+        <Route path="/registrarse/" component={Registro} />
         <Route component={NotFound} />
       </Switch>
     </Router>
