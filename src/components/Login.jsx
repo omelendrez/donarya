@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 
-
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(email, password)
   }
-  
+
   return (
     <div className="container mt-4 mb-5 pb-5">
       <h4 className="mb-4">Login</h4>
