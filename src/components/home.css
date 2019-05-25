@@ -1,7 +1,13 @@
-.jumbotron {
-  background-image: url("https://theunboundedspirit.com/wp-content/uploads/2013/12/Be-Free.jpg");
+.home {
+  position: absolute;
+  top: 3.5em;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url("../assets/logo.svg");
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 86vh;
-  color: white;
+  background-attachment: fixed;
+  background-position:  right 30vh;
+  background-color: #455a64;
+  color: #fff;
 }
