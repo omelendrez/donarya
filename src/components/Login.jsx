@@ -35,7 +35,7 @@ const Login = () => {
           </div>
         </div>
         <div className="form-group">
-          <label className="sr-only" htmlFor="password">contraseña</label>
+          <label className="sr-only" htmlFor="password">Contraseña</label>
           <div className="input-group">
             <div className="input-group-prepend">
               <div className="input-group-text">
