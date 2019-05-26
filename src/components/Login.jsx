@@ -24,7 +24,9 @@ const Login = () => {
             id="email"
             onChange={e => setEmail(e.target.value)}
             value={email}
-            placeholder="Ingresá tu email" />
+            placeholder="Ingresá tu email"
+            required
+          />
         </div>
 
         <div className="form-group">
@@ -36,6 +38,7 @@ const Login = () => {
             placeholder="Ingresá tu contraseña"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            required
           />
         </div>
 
