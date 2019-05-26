@@ -10,25 +10,25 @@ const Login = () => {
   }
 
   return (
-    <div className="container mt-4 mb-5 pb-5">
-      <h4 className="mb-4">Login</h4>
+    <div className="container col-xs-10 col-sm-8 col-md-6 col-lg-4 mb-5">
+
+      <p className="my-4 display-4">Login</p>
+
       <form onSubmit={handleSubmit}>
 
         <div className="form-group">
-          <label htmlFor="email">Email {email}</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             className="form-control"
             id="email"
-            aria-describedby="emailHelp"
             onChange={e => setEmail(e.target.value)}
             value={email}
             placeholder="Ingresá tu email" />
-          <small id="emailHelp" className="form-text text-muted">Nunca vamos a compartir tu email con nadie.</small>
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Contraseña {password}</label>
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             className="form-control"
@@ -42,7 +42,7 @@ const Login = () => {
         <div className="form-row">
           <button
             type="submit"
-            className="btn btn-success btn-block offset-4 col-4 col-xs-12"
+            className="btn btn-lg btn-success btn-block mt-3"
           >Ingresar</button>
         </div>
 
