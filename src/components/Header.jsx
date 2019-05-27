@@ -1,14 +1,8 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Home from './Home'
-import Donaciones from './Donaciones'
-import NotFound from './NotFound'
-import Login from './Login'
-import Register from './Register'
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Router>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 
         <Link className="navbar-brand" to="/">Donar Ya!</Link>
@@ -38,14 +32,6 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/donaciones/" component={Donaciones} />
-        <Route path="/login/" component={Login} />
-        <Route path="/registrarse/" component={Register} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
   )
 }
 
