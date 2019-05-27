@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import './app.css'
+import './app.scss'
 
 const App = () => {
   return (
