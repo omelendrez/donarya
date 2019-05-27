@@ -20,6 +20,9 @@ const Header = () => {
             <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
               <Link className="nav-link" to="/donaciones">Donaciones</Link>
             </li>
+            <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
+              <Link className="nav-link" to="/donar">Donar</Link>
+            </li>
           </ul>
 
           <ul className="nav navbar-nav navbar-right">
