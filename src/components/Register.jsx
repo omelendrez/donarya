@@ -16,7 +16,9 @@ const Register = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container mt-4 mb-5 pb-5">
+      <h4 className="mb-4">Register</h4>
+      <form onSubmit={handleSubmit}></form>
 
       <form>
         <div className="form-row">
