@@ -14,13 +14,15 @@ const sw = () => {
   return (
     <React.Fragment>
       <Header />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/donaciones/" component={Donaciones} />
-        <Route path="/login/" component={Login} />
-        <Route path="/registrarse/" component={Register} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="main">
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/donaciones/" component={Donaciones} />
+          <Route path="/login/" component={Login} />
+          <Route path="/registrarse/" component={Register} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
       <Footer />
     </React.Fragment>
   )
