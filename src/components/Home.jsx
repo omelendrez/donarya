@@ -1,9 +1,9 @@
 import React from 'react'
-import './home.css'
+import './home.scss'
 
 const Home = () => {
   return (
-    <div className="jumbotron">
+    <div className="home pt-4">
       <div className="container">
         <h1 className="display-4">Donar Ya!</h1>
         <p className="lead">Para que podamos ayudar entre todos.</p>
