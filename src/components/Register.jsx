@@ -110,7 +110,7 @@ const Register = () => {
               onChange={e => handleChange(e)}
               value={email}
               required />
-            <small id="emailHelp" className="form-text text-muted">Nunca compartiremos el email con otra persona.</small>
+            <small id="emailHelp" className="form-text text-muted">Nunca compartiremos la dirección de email.</small>
           </div>
         </div>
         <div className="form-group row">
@@ -156,7 +156,7 @@ const Register = () => {
         </div>
         <div className="mb-5">
           {error && <div className="alert alert-danger" role="alert">
-            Las contraseñas no coinciden. Vuelga a ingresarlas.
+            Las contraseñas no coinciden. Vuelva a ingresarlas.
         </div>}
           {!error && <button type="submit" className="btn btn-lg btn-success float-right">Registrarse</button>}
         </div>
