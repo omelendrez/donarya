@@ -67,6 +67,7 @@ const Register = () => {
               onChange={e => handleChange(e)}
               value={username}
               required />
+            <small id="emailUsername" className="form-text text-muted">Debe tener entre 8 y 15 caracteres y/o números</small>
           </div>
         </div>
         <div className="form-group row">
@@ -110,7 +111,7 @@ const Register = () => {
               onChange={e => handleChange(e)}
               value={email}
               required />
-            <small id="emailHelp" className="form-text text-muted">Nunca compartiremos la dirección de email.</small>
+            <small id="emailHelp" className="form-text text-muted">Nunca compartiremos la dirección de email</small>
           </div>
         </div>
         <div className="form-group row">
@@ -133,12 +134,14 @@ const Register = () => {
               type="password"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres en total"
+              aria-describedby="passwordHelp"
               className="form-control"
               id="password1"
               placeholder="Ingresar contrasena"
               onChange={e => handleChange(e)}
               value={password1}
               required />
+            <small id="passwordHelp" className="form-text text-muted">Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres de longitud</small>
           </div>
         </div>
         <div className="form-group row">
