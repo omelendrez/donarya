@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 const Register = () => {
 
+  // Inicializamos el estado para guardar lo que usuario ingresa en los respectivos inputs
+  // Usamos el mismo ID que está definido en cada input para simplificar el código
   const [form, updateForm] = useState({
     fullName: '',
     username: '',
@@ -13,26 +15,54 @@ const Register = () => {
     password2: ''
   })
 
-  const [error, setError] = useState(false)
+  // La variable de estado 'error' nos servidar para activar/desactivar el mensaje de error al pie del formulario
+  const [error, setError] = useState({ error: false, message: '' })
 
   const handleSubmit = (e) => {
+    // El usuario ha dado click en el botón Registrarse
     e.preventDefault()
     if (password1 !== password2) {
-      setError(true)
+
+      // Las contraseñas no son iguales entonces activamos el mensaje de error
+      setError({
+        ...error,
+        error: true,
+        message: 'Las contraseñas no coinciden. Vuelva a ingresarlas.'
+      })
+      // Como hubo error, no continuamos (return termina la función acá)
       return
     }
+
+    // Si no hubo error vamos a enviar la data al servidor de backend
     console.log(fullName, username, dni, phoneNumber, address, email, password1, password2)
   }
 
   const handleChange = (e => {
-    setError(false)
+    // El usuario ha tipeado algo en algún campo del formulario
+
+    // Limpiamos el mensaje de error que pueda haber quedado cuando el usuario intentó enviar los datos (click en Registrar) con errores
+    // Si hubo errores esta variable de estado 'errStatus' será igual a 'true'
+    if (errStatus) {
+      setError({
+        ...error,
+        error: false,
+        message: ''
+      })
+    }
+
+    // Actualizamos el estado con el ID del input que se modificó
     updateForm({
       ...form,
       [e.target.id]: e.target.value
     })
   })
-
+  // Usamos object destructuring para asignar las propiedades del objeto 'form' a variables
   const { fullName, username, dni, phoneNumber, address, email, password1, password2 } = form
+
+  // Lo mismo con el objeto 'error', además aquí le damos nuevos nombres a la variables
+  // Por ejemplo en el objeto 'error' la propiedad 'message' la asignamos a la variable 'errMsg'
+  // que sería lo mismo que hacer: const errMsg = error.message
+  const { message: errMsg, error: errStatus } = error
 
   return (
     <div className="container mb-5 pb-5">
@@ -158,10 +188,10 @@ const Register = () => {
           </div>
         </div>
         <div className="mb-5">
-          {error && <div className="alert alert-danger" role="alert">
-            Las contraseñas no coinciden. Vuelva a ingresarlas.
-        </div>}
-          {!error && <button type="submit" className="btn btn-lg btn-success float-right">Registrarse</button>}
+          {errStatus && <div className="alert alert-danger" role="alert">
+            {errMsg}
+          </div>}
+          {!errStatus && <button type="submit" className="btn btn-lg btn-success float-right">Registrarse</button>}
         </div>
       </form>
     </div >
