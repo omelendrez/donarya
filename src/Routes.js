@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
 
-// Components
+// Componentes
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/Home'
@@ -10,7 +10,12 @@ import NotFound from './components/NotFound'
 import Login from './components/Login'
 import Register from './components/Register'
 
-const sw = () => {
+// Ponemos el componente Header (que es el menú de navegación) en el top de arriba de la patalla
+// Luego creamos las rutas que react necesita para generar las páginas dentro de Switch
+// Las rutas (Route) llevan el 'path' y el componente que se debe ejecutar para ese 'path'
+// Al pie de la pantalla ponemos el Footer
+
+const Routes = () => {
   return (
     <React.Fragment>
       <Header />
@@ -28,4 +33,4 @@ const sw = () => {
   )
 }
 
-export default sw
+export default Routes
