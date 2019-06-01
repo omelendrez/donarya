@@ -15,21 +15,20 @@ const Register = () => {
     password2: ''
   })
 
-  // La variable de estado 'error' nos servidar para activar/desactivar el mensaje de error al pie del formulario
+  // La variable de estado 'error' nos servirá para activar/desactivar el mensaje de error al pie del formulario
   const [error, setError] = useState({ error: false, message: '' })
 
   const handleSubmit = (e) => {
     // El usuario ha dado click en el botón Registrarse
     e.preventDefault()
     if (password1 !== password2) {
-
-      // Las contraseñas no son iguales entonces activamos el mensaje de error
+      // Si las contraseñas no son iguales entonces activamos el mensaje de error
       setError({
         ...error,
         error: true,
         message: 'Las contraseñas no coinciden. Vuelva a ingresarlas.'
       })
-      // Como hubo error, no continuamos (return termina la función acá)
+      // Como hubo error, no continuamos, por eso usamos return (return termina la función acá)
       return
     }
 
@@ -40,8 +39,8 @@ const Register = () => {
   const handleChange = (e => {
     // El usuario ha tipeado algo en algún campo del formulario
 
-    // Limpiamos el mensaje de error que pueda haber quedado cuando el usuario intentó enviar los datos (click en Registrar) con errores
-    // Si hubo errores esta variable de estado 'errStatus' será igual a 'true'
+    // Limpiamos el mensaje de error que pueda haber quedado cuando el usuario intentó anteriormente enviar los datos (click en Registrar) con errores
+    // Si hubo errores esta variable de estado 'errStatus' será igual a 'true' entonces la ponemos el 'false' y borramos el mensaje de error (message: '')
     if (errStatus) {
       setError({
         ...error,
@@ -50,7 +49,7 @@ const Register = () => {
       })
     }
 
-    // Actualizamos el estado con el ID del input que se modificó
+    // Actualizamos el estado con el ID del input que se modificó y su nuevo valor
     updateForm({
       ...form,
       [e.target.id]: e.target.value
@@ -61,7 +60,9 @@ const Register = () => {
 
   // Lo mismo con el objeto 'error', además aquí le damos nuevos nombres a la variables
   // Por ejemplo en el objeto 'error' la propiedad 'message' la asignamos a la variable 'errMsg'
-  // que sería lo mismo que hacer: const errMsg = error.message
+  // que sería lo mismo que hacer lo siguiente:
+  //      const errMsg = error.message
+
   const { message: errMsg, error: errStatus } = error
 
   return (
