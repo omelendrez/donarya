@@ -1,9 +1,15 @@
 import React from 'react'
+// Para asociar qué página se muestra de acuerdo a la url usamos Switch y Route
+// Switch es el condicional (si la url es x, el componente a ejecutar será y)
+// Route permite asociar la url al componente
 import { Route, Switch } from "react-router-dom";
 
-// Componentes
+// Componentes principales
 import Header from './components/Header'
 import Footer from './components/Footer'
+
+// Componentes que cambian de acuerdo a la url
+// Estos van dentro de Switch con un Route para cada uno
 import Home from './components/Home'
 import Donaciones from './components/Donaciones'
 import NotFound from './components/NotFound'

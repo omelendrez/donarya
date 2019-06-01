@@ -6,10 +6,10 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 // Importamos bootstrap y sus dependencias
-import 'bootstrap/dist/css/bootstrap.min.css'
-import $ from 'jquery' // Used by bootstrap
-import Popper from 'popper.js' // Used by bootstrap
-import 'bootstrap/dist/js/bootstrap.bundle.min'
+import 'bootstrap/dist/css/bootstrap.min.css' // css
+import $ from 'jquery' // JS library used by bootstrap
+import Popper from 'popper.js' // JS library used by bootstrap
+import 'bootstrap/dist/js/bootstrap.bundle.min' // JS bootstrap bundle
 
 // Importamos fontawesome para usar los íconos
 import '@fortawesome/fontawesome-free/css/all.css'
