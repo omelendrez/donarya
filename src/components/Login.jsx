@@ -10,39 +10,53 @@ const Login = () => {
   }
 
   return (
-    <div className="container mt-4 mb-5 pb-5">
-      <h4 className="mb-4">Login</h4>
+    <div className="container col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
+
+      <p className="my-4 display-4">Login</p>
+
       <form onSubmit={handleSubmit}>
-
         <div className="form-group">
-          <label htmlFor="email">Email {email}</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            onChange={e => setEmail(e.target.value)}
-            value={email}
-            placeholder="Ingresá tu email" />
-          <small id="emailHelp" className="form-text text-muted">Nunca vamos a compartir tu email con nadie.</small>
+          <label className="sr-only" htmlFor="email">Email</label>
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <div className="input-group-text">
+                <i className="fas fa-user"></i>
+              </div>
+            </div>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Email"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+          </div>
         </div>
-
         <div className="form-group">
-          <label htmlFor="password">Contraseña {password}</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Ingresá tu contraseña"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+          <label className="sr-only" htmlFor="password">Contraseña</label>
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <div className="input-group-text">
+                <i className="fas fa-key"></i>
+              </div>
+            </div>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </div>
         </div>
-
         <div className="form-row">
           <button
             type="submit"
-            className="btn btn-success btn-block offset-4 col-4 col-xs-12"
+            className="btn btn-lg btn-success btn-block mt-3"
           >Ingresar</button>
         </div>
 
