@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const Register = () => {
 
-  // Inicializamos el estado para guardar lo que usuario ingresa en los respectivos inputs
+  // Inicializamos el estado para guardar lo que el usuario ingresa en los respectivos inputs
   // Usamos el mismo ID que está definido en cada input para simplificar el código
   const [form, updateForm] = useState({
     fullName: '',
     username: '',
     dni: '',
-    phoneNumber: '',
+    phone: '',
     address: '',
     email: '',
-    password1: '',
+    password: '',
     password2: ''
   })
 
@@ -21,7 +22,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     // El usuario ha dado click en el botón Registrarse
     e.preventDefault()
-    if (password1 !== password2) {
+    if (password !== password2) {
       // Si las contraseñas no son iguales entonces activamos el mensaje de error
       setError({
         ...error,
@@ -33,7 +34,10 @@ const Register = () => {
     }
 
     // Si no hubo error vamos a enviar la data al servidor de backend
-    console.log(fullName, username, dni, phoneNumber, address, email, password1, password2)
+
+    axios
+      .post('https://donarya-be.herokuapp.com/api/users', form)
+      .then(res => console.log(res))
   }
 
   const handleChange = (e => {
@@ -56,13 +60,12 @@ const Register = () => {
     })
   })
   // Usamos object destructuring para asignar las propiedades del objeto 'form' a variables
-  const { fullName, username, dni, phoneNumber, address, email, password1, password2 } = form
+  const { fullName, username, dni, phone, address, email, password, password2 } = form
 
   // Lo mismo con el objeto 'error', además aquí le damos nuevos nombres a la variables
   // Por ejemplo en el objeto 'error' la propiedad 'message' la asignamos a la variable 'errMsg'
   // que sería lo mismo que hacer lo siguiente:
   //      const errMsg = error.message
-
   const { message: errMsg, error: errStatus } = error
 
   return (
@@ -90,7 +93,6 @@ const Register = () => {
             <input
               type="text"
               pattern="[a-zA-Z0-9]{8,15}"
-              maxLength="15"
               title="Usuario debe tener entre 8 y 15 caracteres y/o números"
               className="form-control"
               id="username"
@@ -118,15 +120,15 @@ const Register = () => {
           </div>
         </div>
         <div className="form-group row">
-          <label htmlFor="phoneNumber" className="col-sm-3 col-form-label">Telefono</label>
+          <label htmlFor="phone" className="col-sm-3 col-form-label">Telefono</label>
           <div className="col-sm-9">
             <input
               type="tel"
               className="form-control"
-              id="phoneNumber"
+              id="phone"
               placeholder="Ingresar numero de telefono"
               onChange={e => handleChange(e)}
-              value={phoneNumber}
+              value={phone}
               required />
           </div>
         </div>
@@ -159,7 +161,7 @@ const Register = () => {
           </div>
         </div>
         <div className="form-group row">
-          <label htmlFor="password1" className="col-sm-3 col-form-label">Constraseña</label>
+          <label htmlFor="password" className="col-sm-3 col-form-label">Constraseña</label>
           <div className="col-sm-9">
             <input
               type="password"
@@ -167,10 +169,10 @@ const Register = () => {
               title="Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres en total"
               aria-describedby="passwordHelp"
               className="form-control"
-              id="password1"
+              id="password"
               placeholder="Ingresar contrasena"
               onChange={e => handleChange(e)}
-              value={password1}
+              value={password}
               required />
             <small id="passwordHelp" className="form-text text-muted">Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres de longitud</small>
           </div>
