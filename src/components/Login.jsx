@@ -1,13 +1,24 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [form, updateForm] = useState({ email: '', password: '' })
+
+  const handleChange = (e) => {
+    updateForm({
+      ...form,
+      [e.target.id]: e.target.value
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(email, password)
+    axios
+      .post('https://donarya-be.herokuapp.com/api/auth', form)
+      .then(res => console.log(res))
   }
+
+  const { email, password } = form
 
   return (
     <div className="container col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
@@ -28,7 +39,7 @@ const Login = () => {
               className="form-control"
               id="email"
               placeholder="Email"
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => handleChange(e)}
               value={email}
               required
             />
@@ -48,7 +59,7 @@ const Login = () => {
               id="password"
               placeholder="Contraseña"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={e => handleChange(e)}
               required
             />
           </div>
