@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { Redirect } from 'react-router-dom'
+import API from '../services/api'
 
 const Register = () => {
 
@@ -15,6 +16,9 @@ const Register = () => {
     password: '',
     password2: ''
   })
+
+  const [registered, setRegistered] = useState(false)
+  const [processing, setProcessing] = useState(false)
 
   // La variable de estado 'error' nos servirá para activar/desactivar el mensaje de error al pie del formulario
   const [error, setError] = useState({ error: false, message: '' })
@@ -34,10 +38,20 @@ const Register = () => {
     }
 
     // Si no hubo error vamos a enviar la data al servidor de backend
+    setProcessing(true)
 
-    axios
-      .post('https://donarya-be.herokuapp.com/api/users', form)
-      .then(res => console.log(res))
+    API
+      .post('/users', form)
+      .then(() => setRegistered(true))
+      .catch(err => {
+        const { data } = err.response
+        setError({
+          ...error,
+          error: true,
+          message: data.message
+        })
+        setProcessing(false)
+      })
   }
 
   const handleChange = (e => {
@@ -69,135 +83,139 @@ const Register = () => {
   const { message: errMsg, error: errStatus } = error
 
   return (
-    <div className="container mb-5 pb-5">
-      <p className="my-4 display-4">Registrarse</p>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group row">
-          <label htmlFor="fullName" className="col-sm-3 col-form-label">Nombre completo</label>
-          <div className="col-sm-9">
-            <input
-              type="text"
-              pattern="[a-zA-Z ]{8,}"
-              title="Nombre completo debe tener mínimo 8 caracteres"
-              className="form-control"
-              id="fullName"
-              placeholder="Ingresar nombre completo"
-              onChange={e => handleChange(e)}
-              value={fullName}
-              required />
+    <React.Fragment>
+      {registered && <Redirect to="/login" />}
+
+      <div className="container mb-5 pb-5">
+        <p className="my-4 display-4">Registrarse</p>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group row">
+            <label htmlFor="fullName" className="col-sm-3 col-form-label">Nombre completo</label>
+            <div className="col-sm-9">
+              <input
+                type="text"
+                pattern="[a-zA-Z ]{8,}"
+                title="Nombre completo debe tener mínimo 8 caracteres"
+                className="form-control"
+                id="fullName"
+                placeholder="Ingresar nombre completo"
+                onChange={e => handleChange(e)}
+                value={fullName}
+                required />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="username" className="col-sm-3 col-form-label">Usuario</label>
-          <div className="col-sm-9">
-            <input
-              type="text"
-              pattern="[a-zA-Z0-9]{8,15}"
-              title="Usuario debe tener entre 8 y 15 caracteres y/o números"
-              className="form-control"
-              id="username"
-              placeholder="Ingresar usuario"
-              onChange={e => handleChange(e)}
-              value={username}
-              required />
-            <small id="emailUsername" className="form-text text-muted">Debe tener entre 8 y 15 caracteres y/o números</small>
+          <div className="form-group row">
+            <label htmlFor="username" className="col-sm-3 col-form-label">Usuario</label>
+            <div className="col-sm-9">
+              <input
+                type="text"
+                pattern="[a-zA-Z0-9]{8,15}"
+                title="Usuario debe tener entre 8 y 15 caracteres y/o números"
+                className="form-control"
+                id="username"
+                placeholder="Ingresar usuario"
+                onChange={e => handleChange(e)}
+                value={username}
+                required />
+              <small id="emailUsername" className="form-text text-muted">Debe tener entre 8 y 15 caracteres y/o números</small>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="dni" className="col-sm-3 col-form-label">DNI</label>
-          <div className="col-sm-9">
-            <input
-              type="text"
-              pattern="[0-9]{8}"
-              title="DNI debe tener 8 números"
-              maxLength="8"
-              className="form-control"
-              id="dni"
-              placeholder="Ingresar numero de documento"
-              onChange={e => handleChange(e)}
-              value={dni}
-              required />
+          <div className="form-group row">
+            <label htmlFor="dni" className="col-sm-3 col-form-label">DNI</label>
+            <div className="col-sm-9">
+              <input
+                type="text"
+                pattern="[0-9]{8}"
+                title="DNI debe tener 8 números"
+                maxLength="8"
+                className="form-control"
+                id="dni"
+                placeholder="Ingresar numero de documento"
+                onChange={e => handleChange(e)}
+                value={dni}
+                required />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="phone" className="col-sm-3 col-form-label">Telefono</label>
-          <div className="col-sm-9">
-            <input
-              type="tel"
-              className="form-control"
-              id="phone"
-              placeholder="Ingresar numero de telefono"
-              onChange={e => handleChange(e)}
-              value={phone}
-              required />
+          <div className="form-group row">
+            <label htmlFor="phone" className="col-sm-3 col-form-label">Telefono</label>
+            <div className="col-sm-9">
+              <input
+                type="tel"
+                className="form-control"
+                id="phone"
+                placeholder="Ingresar numero de telefono"
+                onChange={e => handleChange(e)}
+                value={phone}
+                required />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="email" className="col-sm-3 col-form-label">Email</label>
-          <div className="col-sm-9">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              aria-describedby="emailHelp"
-              placeholder="Ingresar email"
-              onChange={e => handleChange(e)}
-              value={email}
-              required />
-            <small id="emailHelp" className="form-text text-muted">Nunca compartiremos la dirección de email</small>
+          <div className="form-group row">
+            <label htmlFor="email" className="col-sm-3 col-form-label">Email</label>
+            <div className="col-sm-9">
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="Ingresar email"
+                onChange={e => handleChange(e)}
+                value={email}
+                required />
+              <small id="emailHelp" className="form-text text-muted">Nunca compartiremos la dirección de email</small>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="address" className="col-sm-3 col-form-label">Domicilio</label>
-          <div className="col-sm-9">
-            <textarea
-              className="form-control"
-              id="address"
-              placeholder="Ingresar domicilio"
-              onChange={e => handleChange(e)}
-              rows="3"
-              value={address}
-              required />
+          <div className="form-group row">
+            <label htmlFor="address" className="col-sm-3 col-form-label">Domicilio</label>
+            <div className="col-sm-9">
+              <textarea
+                className="form-control"
+                id="address"
+                placeholder="Ingresar domicilio"
+                onChange={e => handleChange(e)}
+                rows="3"
+                value={address}
+                required />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="password" className="col-sm-3 col-form-label">Constraseña</label>
-          <div className="col-sm-9">
-            <input
-              type="password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres en total"
-              aria-describedby="passwordHelp"
-              className="form-control"
-              id="password"
-              placeholder="Ingresar contrasena"
-              onChange={e => handleChange(e)}
-              value={password}
-              required />
-            <small id="passwordHelp" className="form-text text-muted">Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres de longitud</small>
+          <div className="form-group row">
+            <label htmlFor="password" className="col-sm-3 col-form-label">Constraseña</label>
+            <div className="col-sm-9">
+              <input
+                type="password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres en total"
+                aria-describedby="passwordHelp"
+                className="form-control"
+                id="password"
+                placeholder="Ingresar contrasena"
+                onChange={e => handleChange(e)}
+                value={password}
+                required />
+              <small id="passwordHelp" className="form-text text-muted">Debe tener al menos una letra mayúscula, una minúscula, un número y al menos 8 caracteres de longitud</small>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="password2" className="col-sm-3 col-form-label">Repetir constraseña</label>
-          <div className="col-sm-9">
-            <input
-              type="password"
-              className="form-control"
-              id="password2"
-              placeholder="Ingresar contrasena de nuevo"
-              onChange={e => handleChange(e)}
-              value={password2}
-              required />
+          <div className="form-group row">
+            <label htmlFor="password2" className="col-sm-3 col-form-label">Repetir constraseña</label>
+            <div className="col-sm-9">
+              <input
+                type="password"
+                className="form-control"
+                id="password2"
+                placeholder="Ingresar contrasena de nuevo"
+                onChange={e => handleChange(e)}
+                value={password2}
+                required />
+            </div>
           </div>
-        </div>
-        <div className="mb-5">
-          {errStatus && <div className="alert alert-danger" role="alert">
-            {errMsg}
-          </div>}
-          {!errStatus && <button type="submit" className="btn btn-lg btn-success float-right">Registrarse</button>}
-        </div>
-      </form>
-    </div >
+          <div className="mb-5">
+            {errStatus && <div className="alert alert-danger" role="alert">
+              {errMsg}
+            </div>}
+            {!errStatus && <button type="submit" disabled={processing} className="btn btn-lg btn-success float-right">Registrarse</button>}
+          </div>
+        </form>
+      </div >
+    </React.Fragment>
   )
 }
 
