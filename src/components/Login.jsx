@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { Redirect } from 'react-router-dom'
+import API from '../services/api'
 
 const Login = () => {
   const [form, updateForm] = useState({ email: '', password: '' })
+  const [error, setError] = useState({ error: false, message: '' })
+  const [processing, setProcessing] = useState(false)
+  const [logged, setLogged] = useState(false)
 
   const handleChange = (e) => {
     updateForm({
@@ -13,67 +17,86 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios
-      .post('https://donarya-be.herokuapp.com/api/auth', form)
-      .then(res => console.log(res))
+    setProcessing(true)
+    API
+      .post('/auth', form)
+      .then(() => setLogged(true))
+      .catch(err => {
+        setProcessing(false)
+        const { data } = err.response
+        setError({
+          ...error,
+          error: true,
+          message: data.message
+        })
+      })
   }
 
   const { email, password } = form
+  const { message: errMsg, error: errStatus } = error
 
   return (
-    <div className="container col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
+    <React.Fragment>
+      {logged && <Redirect to="/" />}
+      <div className="container col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
 
-      <p className="my-4 display-4">Login</p>
+        <p className="my-4 display-4">Login</p>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label className="sr-only" htmlFor="email">Email</label>
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <div className="input-group-text">
-                <i className="fas fa-user"></i>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="sr-only" htmlFor="email">Email</label>
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <div className="input-group-text">
+                  <i className="fas fa-user"></i>
+                </div>
               </div>
+              <input
+                type="text"
+                className="form-control"
+                id="email"
+                placeholder="Usuario o Email"
+                onChange={e => handleChange(e)}
+                value={email}
+                required
+              />
             </div>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="Email"
-              onChange={e => handleChange(e)}
-              value={email}
-              required
-            />
           </div>
-        </div>
-        <div className="form-group">
-          <label className="sr-only" htmlFor="password">Contraseña</label>
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <div className="input-group-text">
-                <i className="fas fa-key"></i>
+          <div className="form-group">
+            <label className="sr-only" htmlFor="password">Contraseña</label>
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <div className="input-group-text">
+                  <i className="fas fa-key"></i>
+                </div>
               </div>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={e => handleChange(e)}
+                required
+              />
             </div>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Contraseña"
-              value={password}
-              onChange={e => handleChange(e)}
-              required
-            />
           </div>
-        </div>
-        <div className="form-row">
-          <button
-            type="submit"
-            className="btn btn-lg btn-success btn-block mt-3"
-          >Ingresar</button>
-        </div>
+          <div className="form-row">
+            <button
+              type="submit"
+              disabled={processing}
+              className="btn btn-lg btn-success btn-block mt-3"
+            >Ingresar</button>
+            {errStatus && <div className="alert alert-danger btn-block" role="alert">
+              {errMsg}
+            </div>}
 
-      </form>
+          </div>
 
-    </div>
+        </form>
+
+      </div>
+    </React.Fragment>
   )
 }
 
