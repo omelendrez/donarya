@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import API from '../services/api'
 
-const Login = () => {
+const Login = (props) => {
   const [form, updateForm] = useState({ email: '', password: '' })
   const [error, setError] = useState({ error: false, message: '' })
   const [processing, setProcessing] = useState(false)
@@ -20,7 +20,13 @@ const Login = () => {
     setProcessing(true)
     API
       .post('/auth', form)
-      .then(() => setLogged(true))
+      .then((res) => {
+        const { user, token } = res.data
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('token', token)
+        setLogged(true)
+        props.setFullName(user.fullName)
+      })
       .catch(err => {
         setProcessing(false)
         const { data } = err.response

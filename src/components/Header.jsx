@@ -2,7 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom";
 // Acá vamos a usar los estilos de bootstrap para crear la barra de navegación
 // Usamos 'Link' para crear los links (equivale a: <a href='/'>Home</a>)
-const Header = () => {
+const Header = (props) => {
+  const { fullName } = props
   return (
     <nav className="navbar navbar-expand-sm navbar-dark">
 
@@ -26,14 +27,17 @@ const Header = () => {
           </li>
         </ul>
 
-        <ul className="nav navbar-nav navbar-right">
-          <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
-            <Link className="nav-link" to="/registrarse">Registrarse</Link>
-          </li>
-          <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
-            <Link className="nav-link" to="/login">Login</Link>
-          </li>
-        </ul>
+        {fullName}
+        {!fullName &&
+          <ul className="nav navbar-nav navbar-right">
+            <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
+              <Link className="nav-link" to="/registrarse">Registrarse</Link>
+            </li>
+            <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
+              <Link className="nav-link" to="/login">Login</Link>
+            </li>
+          </ul>
+        }
       </div>
     </nav>
   )
