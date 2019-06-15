@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // Para asociar qué página se muestra de acuerdo a la url usamos Switch y Route
 // Switch es el condicional (si la url es x, el componente a ejecutar será y)
 // Route permite asociar la url al componente
@@ -22,14 +22,16 @@ import Register from './components/Register'
 // Al pie de la pantalla ponemos el Footer
 
 const Routes = () => {
+  const [fullName, setFullName] = useState('')
+
   return (
     <React.Fragment>
-      <Header />
+      <Header fullName={fullName} />
       <div className="main">
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/donaciones/" component={Donaciones} />
-          <Route path="/login/" component={Login} />
+          <Route path="/login/" component={() => <Login setFullName={setFullName} />} />
           <Route path="/registrarse/" component={Register} />
           <Route component={NotFound} />
         </Switch>
