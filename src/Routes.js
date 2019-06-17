@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 // Estos van dentro de Switch con un Route para cada uno
 import Home from './components/Home'
 import Donaciones from './components/Donaciones'
+import Donar from './components/Donar'
 import NotFound from './components/NotFound'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -31,6 +32,7 @@ const Routes = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/donaciones/" component={Donaciones} />
+          <Route path="/donar/" component={Donar} />
           <Route path="/login/" component={() => <Login setFullName={setFullName} />} />
           <Route path="/registrarse/" component={Register} />
           <Route component={NotFound} />

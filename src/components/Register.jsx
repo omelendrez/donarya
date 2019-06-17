@@ -10,6 +10,7 @@ const Register = () => {
     fullName: '',
     username: '',
     dni: '',
+    cuit: '',
     phone: '',
     address: '',
     email: '',
@@ -74,7 +75,7 @@ const Register = () => {
     })
   })
   // Usamos object destructuring para asignar las propiedades del objeto 'form' a variables
-  const { fullName, username, dni, phone, address, email, password, password2 } = form
+  const { fullName, username, dni, cuit, phone, address, email, password, password2 } = form
 
   // Lo mismo con el objeto 'error', además aquí le damos nuevos nombres a la variables
   // Por ejemplo en el objeto 'error' la propiedad 'message' la asignamos a la variable 'errMsg'
@@ -133,6 +134,22 @@ const Register = () => {
                 placeholder="Ingresar numero de documento"
                 onChange={e => handleChange(e)}
                 value={dni}
+                required />
+            </div>
+          </div>
+          <div className="form-group row">
+            <label htmlFor="cuit" className="col-sm-3 col-form-label">CUIL/CUIT</label>
+            <div className="col-sm-9">
+              <input
+                type="text"
+                pattern="[0-9]{11}"
+                title="CUIT/CUIL debe tener 11 números"
+                maxLength="11"
+                className="form-control"
+                id="cuit"
+                placeholder="Ingresar numero de CUIT o CUIL"
+                onChange={e => handleChange(e)}
+                value={cuit}
                 required />
             </div>
           </div>
