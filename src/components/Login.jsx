@@ -7,6 +7,15 @@ const Login = (props) => {
   const [error, setError] = useState({ error: false, message: '' })
   const [processing, setProcessing] = useState(false)
   const [logged, setLogged] = useState(false)
+  const [pwdType, setPwdType] = useState('password')
+
+  const showPassword = () => {
+    if (pwdType === 'password') {
+      setPwdType('text')
+    } else {
+      setPwdType('password')
+    }
+  }
 
   const handleChange = (e) => {
     updateForm({
@@ -77,7 +86,7 @@ const Login = (props) => {
                 </div>
               </div>
               <input
-                type="password"
+                type={pwdType}
                 className="form-control"
                 id="password"
                 placeholder="Contraseña"
@@ -85,6 +94,11 @@ const Login = (props) => {
                 onChange={e => handleChange(e)}
                 required
               />
+              <div className="input-group-append">
+                <div className="input-group-text">
+                  <i className="fas fa-eye" onClick={showPassword}></i>
+                </div>
+              </div>
             </div>
           </div>
           <div className="form-row">

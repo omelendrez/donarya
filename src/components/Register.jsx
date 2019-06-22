@@ -131,7 +131,7 @@ const Register = () => {
                 maxLength="8"
                 className="form-control"
                 id="dni"
-                placeholder="Ingresar numero de documento"
+                placeholder="Ingresar número de documento"
                 onChange={e => handleChange(e)}
                 value={dni}
                 required />
@@ -147,20 +147,20 @@ const Register = () => {
                 maxLength="11"
                 className="form-control"
                 id="cuit"
-                placeholder="Ingresar numero de CUIT o CUIL"
+                placeholder="Ingresar número de CUIT o CUIL"
                 onChange={e => handleChange(e)}
                 value={cuit}
                 required />
             </div>
           </div>
           <div className="form-group row">
-            <label htmlFor="phone" className="col-sm-3 col-form-label">Telefono</label>
+            <label htmlFor="phone" className="col-sm-3 col-form-label">Teléfono</label>
             <div className="col-sm-9">
               <input
                 type="tel"
                 className="form-control"
                 id="phone"
-                placeholder="Ingresar numero de telefono"
+                placeholder="Ingresar número de teléfono"
                 onChange={e => handleChange(e)}
                 value={phone}
                 required />
@@ -204,7 +204,7 @@ const Register = () => {
                 aria-describedby="passwordHelp"
                 className="form-control"
                 id="password"
-                placeholder="Ingresar contrasena"
+                placeholder="Ingresar contraseña"
                 onChange={e => handleChange(e)}
                 value={password}
                 required />
@@ -218,7 +218,7 @@ const Register = () => {
                 type="password"
                 className="form-control"
                 id="password2"
-                placeholder="Ingresar contrasena de nuevo"
+                placeholder="Ingresar contraseña de nuevo"
                 onChange={e => handleChange(e)}
                 value={password2}
                 required />
