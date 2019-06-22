@@ -19,12 +19,16 @@ const Header = (props) => {
           <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show" >
             <Link className="nav-link" to="/">Home</Link>
           </li>
-          <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
-            <Link className="nav-link" to="/donaciones">Donaciones</Link>
-          </li>
-          <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
-            <Link className="nav-link" to="/donar">Donar</Link>
-          </li>
+          {fullName &&
+            <React.Fragment>
+              <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
+                <Link className="nav-link" to="/donaciones">Donaciones</Link>
+              </li>
+              <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
+                <Link className="nav-link" to="/donar">Donar</Link>
+              </li>
+            </React.Fragment>
+          }
         </ul>
 
         {fullName}
