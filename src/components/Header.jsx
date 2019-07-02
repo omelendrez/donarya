@@ -31,7 +31,12 @@ const Header = (props) => {
           }
         </ul>
 
-        {fullName}
+        {fullName &&
+          <React.Fragment>
+            <span className="mr-4">{fullName}</span>
+            <Link to="/login" title='Logout'><i class="fas fa-sign-out-alt"></i></Link>
+          </React.Fragment>
+        }
         {!fullName &&
           <ul className="nav navbar-nav navbar-right">
             <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
