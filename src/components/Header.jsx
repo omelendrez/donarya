@@ -34,7 +34,7 @@ const Header = (props) => {
         {fullName &&
           <React.Fragment>
             <span className="mr-4">{fullName}</span>
-            <Link to="/login" title='Logout'><i class="fas fa-sign-out-alt"></i></Link>
+            <Link to="/login" title='Logout'><i className="fas fa-sign-out-alt"></i></Link>
           </React.Fragment>
         }
         {!fullName &&
