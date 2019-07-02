@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import API from '../services/api'
 
@@ -8,6 +8,11 @@ const Login = (props) => {
   const [processing, setProcessing] = useState(false)
   const [logged, setLogged] = useState(false)
   const [pwdType, setPwdType] = useState('password')
+
+  useEffect(() => {
+    props.setFullName('')
+    setLogged(false)
+  }, [])
 
   const showPassword = () => {
     if (pwdType === 'password') {
