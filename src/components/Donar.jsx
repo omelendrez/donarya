@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import API from '../services/api'
+import DonarForm from './DonarForm'
 
 const Donar = () => {
 
@@ -64,6 +65,9 @@ const Donar = () => {
               value={description}
               required />
           </div>
+        </div>
+        <div className="col-sm-12">
+          <DonarForm />
         </div>
         <div className="mb-5">
           {errStatus && <div className="alert alert-danger" role="alert">
