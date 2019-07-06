@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // Para asociar qué página se muestra de acuerdo a la url usamos Switch y Route
 // Switch es el condicional (si la url es x, el componente a ejecutar será y)
 // Route permite asociar la url al componente
@@ -24,6 +24,13 @@ import Register from './components/Register'
 
 const Routes = () => {
   const [fullName, setFullName] = useState('')
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user && user.fullName) {
+      setFullName(user.fullName)
+    }
+  }, [])
 
   return (
     <React.Fragment>
