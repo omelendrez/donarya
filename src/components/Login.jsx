@@ -12,6 +12,7 @@ const Login = (props) => {
   useEffect(() => {
     props.setFullName('')
     setLogged(false)
+    localStorage.removeItem('user')
   }, [])
 
   const showPassword = () => {
