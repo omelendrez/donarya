@@ -13,6 +13,7 @@ const Login = (props) => {
     props.setFullName('')
     setLogged(false)
     localStorage.removeItem('user')
+    // eslint-disable-next-line
   }, [])
 
   const showPassword = () => {

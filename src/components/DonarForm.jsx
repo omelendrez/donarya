@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import './DonarForm.scss'
 
-const DonarForm = () => {
+const DonarForm = (props) => {
   const [form, setForm] = useState({
     title: '',
     quantity: 1
@@ -13,6 +14,11 @@ const DonarForm = () => {
     })
   })
 
+  const handleSave = (e => {
+    e.preventDefault()
+    props.handleSave(form)
+  })
+
   return (
     <React.Fragment>
       <div className="form-group row">
@@ -20,25 +26,36 @@ const DonarForm = () => {
           <input
             type="text"
             pattern="[a-zA-Z 0-9]{3,}"
-            title="Artículo a donar"
+            title="Artículo"
             className="form-control"
             id="title"
-            placeholder="Ingresar el artículo a donar"
+            placeholder="Artículo"
             onChange={e => handleChange(e)}
             value={form.title}
             required />
         </div>
-        <div className="col-sm-3">
+        <div className="col-sm-2">
           <input
             type="text"
             pattern="[0-9]{1,}"
-            title="Ingrese la cantidad del artículo"
+            title="Cantidad"
             className="form-control"
             id="quantity"
             onChange={e => handleChange(e)}
             value={form.quantity}
             required />
         </div>
+
+        <div className="col-sm-1">
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={e => handleSave(e)}
+          >
+            <i className="fas fa-save"></i>
+          </button>
+        </div>
+
       </div>
     </React.Fragment>
   )
