@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import API from '../services/api'
 import DonarForm from './DonarForm'
-import Item from './Item'
+import DonarList from './DonarList'
 import './Donar.scss'
 
 const Donar = () => {
@@ -142,9 +142,7 @@ const Donar = () => {
           }
           {!saved &&
             <div className="col-sm-6 my-1">
-              <ul className="list-group my-1">
-                {items.map((item, index) => <Item key={index} item={item} />)}
-              </ul>
+              <DonarList items={items} />
               {isAdding &&
                 <div className="my-1">
                   <DonarForm handleSave={handleSave} />
