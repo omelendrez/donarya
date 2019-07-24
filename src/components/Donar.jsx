@@ -81,6 +81,11 @@ const Donar = () => {
     setIsAdding(true)
   }
 
+  const onDelete = (item) => {
+    const newItems = items.filter(it => it.title !== item.title)
+    setItems(newItems)
+  }
+
   const handleSave = (item) => {
     if (!item.title.length) {
       setError({
@@ -142,20 +147,18 @@ const Donar = () => {
           }
           {!saved &&
             <div className="col-sm-6 my-1">
-              <DonarList items={items} />
+              <button
+                type="button"
+                className="btn btn-primary my-1"
+                onClick={e => handleAdd(e)}
+              >
+                <i className="fas fa-plus"></i> Agregar artículo
+              </button>
+              <DonarList items={items} onDelete={onDelete} />
               {isAdding &&
                 <div className="my-1">
                   <DonarForm handleSave={handleSave} />
                 </div>
-              }
-              {!isAdding &&
-                <button
-                  type="button"
-                  className="btn btn-primary float-right  my-1"
-                  onClick={e => handleAdd(e)}
-                >
-                  <i className="fas fa-plus"></i> Agregar artículo
-              </button>
               }
             </div>
           }
