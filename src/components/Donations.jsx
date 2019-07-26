@@ -30,7 +30,7 @@ const Donaciones = () => {
           {
             donations.map(record => {
               return (
-                <tr>
+                <tr key={record.id}>
                   <th scope="row">{record.id}</th>
                   <td>{record.description}</td>
                   <td>{record.user.fullName}</td>
