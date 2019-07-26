@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 // Componentes que cambian de acuerdo a la url
 // Estos van dentro de Switch con un Route para cada uno
 import Home from './components/Home'
-import Donaciones from './components/Donaciones'
+import Donations from './components/Donations'
 import Donar from './components/Donar'
 import NotFound from './components/NotFound'
 import Login from './components/Login'
@@ -38,7 +38,7 @@ const Routes = () => {
       <div className="main">
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/donaciones/" component={Donaciones} />
+          <Route path="/donaciones/" component={Donations} />
           <Route path="/donar/" component={Donar} />
           <Route path="/login/" component={() => <Login setFullName={setFullName} />} />
           <Route path="/registrarse/" component={Register} />
