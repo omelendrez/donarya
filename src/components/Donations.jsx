@@ -4,19 +4,34 @@ import API from '../services/api'
 const Donaciones = () => {
 
   const [donations, setDonations] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     API
-      .get('/donations')
+      .get(`/donations?query=${search}`)
       .then(response => {
         const { donations } = response.data
         setDonations(donations)
       })
-  }, [])
+  }, [search])
+
+  const handleChange = e => setSearch(e.target.value)
 
   return (
     <div className="container mb-5 pb-5">
       <p className="my-4 display-4">Donaciones</p>
+      <div className="form-group row">
+        <label htmlFor="search" className="col-sm-2 col-form-label">Buscar</label>
+        <div className="col-sm-6">
+          <input
+            type="text"
+            className="form-control"
+            id="search"
+            value={search}
+            onChange={e => handleChange(e)}
+          />
+        </div>
+      </div>
       <table className="table">
         <thead>
           <tr>
