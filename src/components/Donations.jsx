@@ -35,10 +35,12 @@ const Donaciones = () => {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Descripción</th>
             <th scope="col">Donante</th>
-            <th scope="col">Email</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">CUIT/CUIL</th>
+            <th scope="col">Elementos</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -46,10 +48,16 @@ const Donaciones = () => {
             donations.map(record => {
               return (
                 <tr key={record.id}>
-                  <th scope="row">{record.id}</th>
                   <td>{record.description}</td>
                   <td>{record.user.fullName}</td>
-                  <td>{record.user.email}</td>
+                  <td>{record.user.phone}</td>
+                  <td>{record.user.cuit}</td>
+                  <td>{record.donation_items.length}</td>
+                  <td>
+                    <button className="btn btn-primary">
+                      Detalles
+                    </button>
+                  </td>
                 </tr>
               )
             })
