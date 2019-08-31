@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import API from '../services/api'
+import { Search } from './Search'
+import { Details } from './Details'
 
 const Donaciones = () => {
 
   const [donations, setDonations] = useState([])
   const [search, setSearch] = useState('')
+  const [selected, setSelected] = useState({})
 
   useEffect(() => {
     API
@@ -20,27 +23,16 @@ const Donaciones = () => {
   return (
     <div className="container mb-5 pb-5">
       <p className="my-4 display-4">Donaciones</p>
-      <div className="form-group row">
-        <label htmlFor="search" className="col-sm-2 col-form-label">Buscar</label>
-        <div className="col-sm-6">
-          <input
-            type="text"
-            className="form-control"
-            id="search"
-            value={search}
-            onChange={e => handleChange(e)}
-          />
-        </div>
-      </div>
+      <Search search={search} handleChange={handleChange} />
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">Descripción</th>
-            <th scope="col">Donante</th>
-            <th scope="col">Teléfono</th>
-            <th scope="col">CUIT/CUIL</th>
-            <th scope="col">Elementos</th>
-            <th scope="col"></th>
+            <th>Descripción</th>
+            <th>Donante</th>
+            <th>Teléfono</th>
+            <th>CUIT/CUIL</th>
+            <th>Elementos</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -54,7 +46,7 @@ const Donaciones = () => {
                   <td>{record.user.cuit}</td>
                   <td>{record.donation_items.length}</td>
                   <td>
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" onClick={() => setSelected(record)}>
                       Detalles
                     </button>
                   </td>
@@ -64,6 +56,7 @@ const Donaciones = () => {
           }
         </tbody>
       </table>
+      <Details record={selected} />
     </div>
   )
 }
