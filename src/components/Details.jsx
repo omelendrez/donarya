@@ -37,7 +37,7 @@ export const Details = ({ record, handleClose }) => {
               </thead>
               <tbody>
                 {donation_items.map(item => {
-                  return (<DetailItem item={item} />)
+                  return (<DetailItem key={item.id} item={item} />)
                 })}
               </tbody>
             </table>
