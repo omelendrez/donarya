@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import API from '../services/api'
 import { Search } from './Search'
 import { Details } from './Details'
+import { moment } from '../utils'
 
 const Donaciones = () => {
 
@@ -35,6 +36,7 @@ const Donaciones = () => {
               <th>Teléfono</th>
               <th>CUIT/CUIL</th>
               <th>Elementos</th>
+              <th>Creada</th>
               <th></th>
             </tr>
           </thead>
@@ -48,6 +50,7 @@ const Donaciones = () => {
                     <td>{record.user.phone}</td>
                     <td>{record.user.cuit}</td>
                     <td>{record.donation_items.length}</td>
+                    <td>{moment(record.createdAt).format('L')}</td>
                     <td>
                       <button className="btn btn-primary" onClick={() => setSelected(record)}>
                         Detalles

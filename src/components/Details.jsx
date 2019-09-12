@@ -1,8 +1,10 @@
 import React from 'react'
 import { DetailItem } from './DetailItem'
+import { DetailRecord } from './DetailRecord'
+import { moment } from '../utils'
 
 export const Details = ({ record, handleClose }) => {
-  const { description, user, donation_items, id } = record
+  const { description, user, donation_items, id, createdAt } = record
   if (!user) return null
   const { fullName, dni, cuit, phone, address, email } = user
   return (
@@ -12,24 +14,13 @@ export const Details = ({ record, handleClose }) => {
         <div className="card-body">
           <h5 className="card-title">{description}</h5>
           <p className="card-text">
-            <p>
-              Donante: <strong>{fullName}</strong>
-            </p>
-            <p>
-              DNI: <strong>{dni}</strong>
-            </p>
-            <p>
-              CUIT: <strong>{cuit}</strong>
-            </p>
-            <p>
-              Teléfono: <strong>{phone}</strong>
-            </p>
-            <p>
-              Dirección: <strong>{address}</strong>
-            </p>
-            <p>
-              Email: <strong>{email}</strong>
-            </p>
+            <DetailRecord label="Donante" value={fullName} />
+            <DetailRecord label="DNI" value={dni} />
+            <DetailRecord label="CUIT" value={cuit} />
+            <DetailRecord label="Teléfono" value={phone} />
+            <DetailRecord label="Dirección" value={address} />
+            <DetailRecord label="Email" value={email} />
+            <DetailRecord label="Creada" value={moment(createdAt).fromNow()} />
             <table className="table">
               <thead>
                 <th>Artículo</th>
