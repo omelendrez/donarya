@@ -40,6 +40,7 @@ const Donaciones = () => {
               {donations.map(record => {
                 return (
                   <TableRow
+                    key={record.id}
                     record={record}
                     selected={selected}
                     setSelected={setSelected}
