@@ -1,0 +1,13 @@
+.flex-container {
+  display: flex;
+}
+
+.table-view,
+.details-view {
+  width: 50%;
+}
+
+.table-view .active {
+  height: 60px;
+  background-color: #ccc;
+}
