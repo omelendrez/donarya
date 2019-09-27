@@ -1,9 +1,13 @@
-.flex-container {
-  display: flex;
+.container-fluid {
+  padding-top: 1px;
 }
 
 .table-view {
   margin-top: 14px;
+}
+
+.table-view table.table {
+  background-color: #fff;
 }
 
 .table-view .active {
