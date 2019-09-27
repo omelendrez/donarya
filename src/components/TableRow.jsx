@@ -9,7 +9,6 @@ export const TableRow = ({ record, selected, setSelected }) => {
     >
       <td>{record.id}</td>
       <td>{record.description}</td>
-      <td>{record.donation_items.length}</td>
       <td>{moment(record.createdAt).format("L")}</td>
       <td>
         {selected.id !== record.id && (

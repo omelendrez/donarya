@@ -31,7 +31,6 @@ const Donaciones = () => {
               <tr>
                 <th>Número</th>
                 <th>Descripción</th>
-                <th>Elementos</th>
                 <th>Creada</th>
                 <th></th>
               </tr>
