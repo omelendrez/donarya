@@ -23,7 +23,7 @@ const Donaciones = () => {
 
   return (
     <div className='container-fluid mb-5 pb-5'>
-      <div className='flex-container'>
+      {!selected.id && (
         <div className='table-view'>
           <Search search={search} handleChange={handleChange} />
           <table className='table'>
@@ -31,7 +31,6 @@ const Donaciones = () => {
               <tr>
                 <th>Número</th>
                 <th>Descripción</th>
-                <th>Creada</th>
                 <th></th>
               </tr>
             </thead>
@@ -49,9 +48,9 @@ const Donaciones = () => {
             </tbody>
           </table>
         </div>
-        <div className='details-view'>
-          <Details record={selected} handleClose={handleClose} />
-        </div>
+      )}
+      <div className='details-view'>
+        <Details record={selected} handleClose={handleClose} />
       </div>
     </div>
   )
