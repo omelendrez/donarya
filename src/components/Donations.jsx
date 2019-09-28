@@ -3,10 +3,17 @@ import API from "../services/api"
 import { Search } from "./Search"
 import { Details } from "./Details"
 import { TableRow } from "./TableRow"
+import { Pagination } from "./Pagination"
 import "./Donations.scss"
 
-const Donaciones = () => {
+const Donations = () => {
+  const pagination = {
+    curPage: 1,
+    pageSize: 5
+  }
+  const [pageState, setPageState] = useState(pagination)
   const [donations, setDonations] = useState([])
+  const [pageItems, setPageItems] = useState([])
   const [search, setSearch] = useState("")
   const [selected, setSelected] = useState({})
 
@@ -15,11 +22,27 @@ const Donaciones = () => {
       setSelected({})
       const { donations } = response.data
       setDonations(donations)
+      setPage(1)
     })
   }, [search])
 
   const handleChange = e => setSearch(e.target.value)
   const handleClose = () => setSelected({})
+
+  const setPage = pageId => {
+    const newPageState = { ...pageState, curPage: pageId }
+    setPageState(newPageState)
+  }
+
+  useEffect(() => {
+    const { curPage, pageSize } = pageState
+    const recordFrom = (curPage - 1) * pageSize
+    const recordTo = curPage * pageSize - 1
+    const recordsToShow = donations.filter(
+      (i, index) => index >= recordFrom && index <= recordTo
+    )
+    setPageItems(recordsToShow)
+  }, [pageState])
 
   return (
     <div className='container-fluid mb-5 pb-5'>
@@ -29,13 +52,13 @@ const Donaciones = () => {
           <table className='table'>
             <thead>
               <tr>
-                <th>Número</th>
                 <th>Descripción</th>
+                <th>Creada</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {donations.map(record => {
+              {pageItems.map(record => {
                 return (
                   <TableRow
                     key={record.id}
@@ -47,6 +70,11 @@ const Donaciones = () => {
               })}
             </tbody>
           </table>
+          <Pagination
+            setPage={setPage}
+            pageState={pageState}
+            records={donations.length}
+          />
         </div>
       )}
       <div className='details-view'>
@@ -56,4 +84,4 @@ const Donaciones = () => {
   )
 }
 
-export default Donaciones
+export default Donations
