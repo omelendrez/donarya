@@ -19,7 +19,7 @@ export const Pagination = props => {
               aria-current='page'
               onClick={() => setPage(i)}
             >
-              <span class='page-link'>{i}</span>
+              <span className='page-link'>{i}</span>
             </li>
           )
         })}
